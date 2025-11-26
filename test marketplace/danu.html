@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBSB STORE - Premium Basketball Shoes</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: #000;
+            color: #fff;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fff;
+            margin-left: -12px; /* geser sedikit ke kiri */
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #ddd;
+        }
+
+        .search-box {
+            background: #1f1f1f;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex: 1;
+            max-width: 900px;
+            margin: 0 1rem;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Categories */
+        .categories {
+            padding: 60px 5%;
+            background: #f8f8f8;
+        }
+
+        .categories h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            height: 200px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 2rem 1.5rem;
+            color: #fff;
+        }
+
+        .category-overlay h3 {
+            font-size: 1.5rem;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 60px 5%;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .products-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid #eee;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff4757;
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-brand {
+            color: #999;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 0.5rem;
+        }
+
+        .product-lowest {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            padding: 3rem 5% 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .search-box { margin: 0 0.5rem; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">JBSB STORE</div>
+        <form class="search-box" data-search-form role="search">
+            <span>🔍</span>
+            <input type="search" placeholder="Search for brand" />
+        </form>
+        <ul class="nav-menu">
+            <li><a href="#" data-scroll-top>Home</a></li>
+            <li><a href="#" data-scroll-to="#products">Products</a></li>
+            <li><a href="#" data-scroll-to="#products">New Releases</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Premium Basketball Shoes</h1>
+        <p>Koleksi sepatu basket terbaik untuk performa maksimal di lapangan</p>
+        <button class="cta-button" data-scroll-to="#products">Explore Collection</button>
+    </section>
+
+    <!-- Categories removed -->
+
+    <!-- Products -->
+    <section class="products" id="products">
+        <h2>Basketball Shoes Collection</h2>
+        <p class="products-subtitle">Sepatu basket terbaik untuk performa maksimal</p>
+        <div class="product-grid">
+            <div class="product-card" data-product data-name="Nike Zoom GT Cut 2">
+                <div class="product-image">
+                    <img src="assets/img/nikeput.jpg" alt="Nike Zoom GT Cut 2">
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Nike</div>
+                    <div class="product-name">Nike Zoom GT Cut 2</div>
+                    <div class="product-lowest">Best Price</div>
+                    <div class="product-price" data-format-price>3499000</div>
+                    <button class="btn primary" data-learn-more data-id="p1" data-name="Nike Zoom GT Cut 2" data-price="3499000">Pelajari Lebih Lanjut</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product data-name="Jordan Tatum 1 PF">
+                <div class="product-image">
+                    <img src="assets/img/tatum1.jpg" alt="Jordan Tatum 1 PF">
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Jordan</div>
+                    <div class="product-name">Jordan Tatum 1 PF</div>
+                    <div class="product-lowest">Best Price</div>
+                    <div class="product-price" data-format-price>1799000</div>
+                    <button class="btn primary" data-learn-more data-id="p2" data-name="Jordan Tatum 1 PF" data-price="1799000">Pelajari Lebih Lanjut</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product data-name="Nike LeBron 15">
+                <div class="product-image">
+                    <img src="assets/img/soundwave.jpg" alt="Nike LeBron 15">
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Nike</div>
+                    <div class="product-name">LeBron 15</div>
+                    <div class="product-lowest">Best Price</div>
+                    <div class="product-price" data-format-price>6299000</div>
+                    <button class="btn primary" data-learn-more data-id="p3" data-name="Nike LeBron 15" data-price="6299000">Pelajari Lebih Lanjut</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product data-name="Nike Kyrie 7">
+                <div class="product-image">
+                    <img src="assets/img/citys.jpg" alt="Nike Kyrie 7">
+                </div>
+                <div class="product-info">
+                    <div class="product-brand">Nike</div>
+                    <div class="product-name">Kyrie 7</div>
+                    <div class="product-lowest">Best Price</div>
+                    <div class="product-price" data-format-price>4999000</div>
+                    <button class="btn primary" data-learn-more data-id="p4" data-name="Nike Kyrie 7" data-price="4999000">Pelajari Lebih Lanjut</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 JBSB STORE. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+        <!-- Product Detail Modal -->
+        <div class="modal-overlay hidden" id="productModal" aria-hidden="true">
+            <div class="modal" role="dialog" aria-modal="true">
+                <button class="modal-close" data-modal-close aria-label="Tutup">×</button>
+                <div class="modal-media">
+                    <img src="" alt="Produk" id="modalImage" loading="lazy">
+                </div>
+                <div class="modal-info">
+                    <h3 id="modalTitle">Nama Produk</h3>
+                    <div class="subtitle" id="modalSubtitle">Brand & Kategori</div>
+                    <div class="price-box">
+                        <div class="price-large" id="modalPrice">Rp 0</div>
+                        <small id="modalNote" style="color:#9ca3af">Harga perkiraan saat ini</small>
+                    </div>
+                    <div class="actions">
+                        <button class="btn contact" id="modalContactBtn">Hubungi lewat WhatsApp</button>
+                        <div class="whatsapp-info" id="modalWhatsapp">
+                            <span class="wa-icon" aria-hidden="true">🟢</span>
+                            <a href="https://wa.me/6282237681480" target="_blank" rel="noopener" class="wa-number">+62 822-3768-1480</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
